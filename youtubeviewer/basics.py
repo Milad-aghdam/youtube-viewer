@@ -2,6 +2,8 @@ import os
 from glob import glob
 import random
 from .features import *
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 
@@ -100,6 +102,7 @@ def get_driver(viewports, agent):
     cwd = os.getcwd()
     path = rf"{cwd}\youtubeviewer\chromedriver.exe"
     # print(path)
+    # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     driver = webdriver.Chrome(executable_path=path ,options=options)
     print("Driver connected!")
     return driver
