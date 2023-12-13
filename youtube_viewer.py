@@ -123,23 +123,6 @@ def timestamp():
     return bcolors.OKGREEN + f'[{date_fmt}] | ' + bcolors.OKCYAN + f'{cpu_usage} | '
 
 
-# def clean_exe_temp(folder):
-#     temp_name = None
-#     if hasattr(sys, '_MEIPASS'):
-#         temp_name = sys._MEIPASS.split('\\')[-1]
-#     else:
-#         if sys.version_info.minor < 7 or sys.version_info.minor > 13:
-#             print(
-#                 f'Your current python version is not compatible : {sys.version}')
-#             print(f'Install Python version between 3.7.x to 3.13.x to run this script')
-#             input("")
-#             sys.exit()
-
-#     for f in glob(os.path.join('temp', folder, '*')):
-#         if temp_name not in f:
-#             shutil.rmtree(f, ignore_errors=True)
-
-
 def update_chrome_version():
     link = 'https://gist.githubusercontent.com/MShawon/29e185038f22e6ac5eac822a1e422e9d/raw/versions.txt'
 
@@ -340,50 +323,6 @@ def youtube_music(driver):
     view_stat = 'music'
 
     return view_stat, output
-
-
-# def spoof_timezone_geolocation(proxy_type, proxy, driver):
-#     try:
-#         proxy_dict = {
-#             "http": f"{proxy_type}://{proxy}",
-#                     "https": f"{proxy_type}://{proxy}",
-#         }
-#         resp = requests.get(
-#             "http://ip-api.com/json", proxies=proxy_dict, timeout=30)
-
-#         if resp.status_code == 200:
-#             location = resp.json()
-#             tz_params = {'timezoneId': location['timezone']}
-#             latlng_params = {
-#                 "latitude": location['lat'],
-#                 "longitude": location['lon'],
-#                 "accuracy": randint(20, 100)
-#             }
-#             info = f"ip-api.com | Lat : {location['lat']} | Lon : {location['lon']} | TZ: {location['timezone']}"
-#         else:
-#             raise RequestException
-
-#     except RequestException:
-#         location = fake.location_on_land()
-#         tz_params = {'timezoneId': location[-1]}
-#         latlng_params = {
-#             "latitude": location[0],
-#             "longitude": location[1],
-#             "accuracy": randint(20, 100)
-#         }
-#         info = f"Random | Lat : {location[0]} | Lon : {location[1]} | TZ: {location[-1]}"
-
-#     try:
-#         driver.execute_cdp_cmd('Emulation.setTimezoneOverride', tz_params)
-
-#         driver.execute_cdp_cmd(
-#             "Emulation.setGeolocationOverride", latlng_params)
-
-#     except WebDriverException:
-#         pass
-
-#     return info
-
 
 def control_player(driver, output, position, youtube, collect_id=True):
     current_url = driver.current_url
@@ -592,16 +531,6 @@ def channel_or_endscreen(position, youtube, driver, view_stat, current_url, curr
             update_view_count(position)
 
 
-# def windows_kill_drivers():
-#     for process in constructor.Win32_Process(["CommandLine", "ProcessId"]):
-#         try:
-#             if 'UserAgentClientHint' in process.CommandLine:
-#                 print(f'Killing PID : {process.ProcessId}', end="\r")
-#                 subprocess.Popen(['taskkill', '/F', '/PID', f'{process.ProcessId}'],
-#                                  stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
-#         except Exception:
-#             pass
-#     print('\n')
 
 
 def quit_driver(driver, data_dir):
@@ -610,9 +539,6 @@ def quit_driver(driver, data_dir):
         if data_dir in temp_folders:
             temp_folders.remove(data_dir)
 
-    # proxy_folder = driver_dict.pop(driver, None)
-    # if proxy_folder:
-    #     shutil.rmtree(proxy_folder, ignore_errors=True)
 
     status = 400
     return status
@@ -660,13 +586,6 @@ def main_viewer(position):
             temp_folders.append(data_dir)
 
             sleep(2)
-            
-
-            #isdetected = driver.execute_script('return navigator.webdriver')
-
-            
-
-
 
             if width == 0:
                 width = driver.execute_script('return screen.width')
@@ -736,23 +655,6 @@ def main_viewer(position):
 
         create_html(
             {"#f14c4c": f"Worker {position} | Line : {e.__traceback__.tb_lineno} | {type(e).__name__} | {e.args[0] if e.args else ''}"})
-
-
-# def get_proxy_list():
-#     if filename:
-#         if category == 'r':
-#             factor = max_threads if max_threads > 1000 else 1000
-#             proxy_list = [filename] * factor
-#         else:
-#             if proxy_api:
-#                 proxy_list = scrape_api(filename)
-#             else:
-#                 proxy_list = load_proxy(filename)
-
-#     else:
-#         proxy_list = gather_proxy()
-
-#     return proxy_list
 
 
 def stop_server(immediate=False):
