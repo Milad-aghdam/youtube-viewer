@@ -11,6 +11,6 @@
 
 Unlock YouTube success with youtube-viewer! Our scripts, powered by threading and Selenium, effortlessly boost viewership. Say goodbye to manual efforts, and embrace the future of YouTube success. Elevate your content now!
 
-**Contact for Access:**
+**Contact:**
 Should you have any questions or require access to this repository, feel free to contact us through email:  [miladagdam@gmail.com](mailto:your-email@example.com).
 
